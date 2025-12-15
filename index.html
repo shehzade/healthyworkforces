@@ -38,7 +38,6 @@
         .fade-in { animation: fadeIn 0.5s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* Mobile Menu Transitions */
         #mobile-menu {
             transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
             max-height: 0;
@@ -53,10 +52,8 @@
 </head>
 <body class="bg-white text-slate-800 antialiased flex flex-col min-h-screen overflow-x-hidden">
 
-    <!-- Navigation -->
     <nav class="w-full py-4 px-4 sm:px-6 md:px-12 bg-white/95 backdrop-blur-md fixed top-0 z-50 left-0 right-0 shadow-sm border-b border-slate-100">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <!-- Logo -->
             <a href="#" onclick="navigateTo('home')" class="flex items-center group z-50">
                 <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-hwblue-600 to-hwteal-500 rounded-lg flex items-center justify-center text-white text-lg sm:text-xl mr-2 sm:mr-3 group-hover:scale-105 transition">
                     <i class="fa-solid fa-heart-pulse"></i>
@@ -64,30 +61,28 @@
                 <div class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">Healthy<span class="text-hwblue-600">Workforces</span></div>
             </a>
             
-            <!-- Desktop Nav Links -->
             <div class="hidden md:flex space-x-8 font-medium text-slate-600">
                 <a href="#solutions" onclick="navigateTo('home', 'solutions')" class="hover:text-hwblue-600 transition">Our Focus</a>
+                <a href="#demos" onclick="navigateTo('home', 'demos')" class="hover:text-hwblue-600 transition">Live Demos</a>
                 <a href="#approach" onclick="navigateTo('home', 'approach')" class="hover:text-hwblue-600 transition">Method</a>
                 <a href="#pricing" onclick="navigateTo('home', 'pricing')" class="hover:text-hwblue-600 transition">Partnership</a>
             </div>
             
-            <!-- Desktop CTA -->
             <div class="hidden md:block">
                 <a href="#contact" onclick="navigateTo('home', 'contact')" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-5 py-2.5 rounded-full font-semibold transition shadow-lg shadow-hwblue-500/20 text-sm">
                     Book Strategy Session
                 </a>
             </div>
 
-            <!-- Mobile Hamburger Button -->
             <button id="mobile-menu-btn" class="md:hidden text-slate-700 text-2xl focus:outline-none z-50 p-2" aria-label="Toggle Menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="md:hidden bg-white w-full border-t border-slate-100 absolute top-full left-0 shadow-xl">
             <div class="flex flex-col p-6 space-y-4 font-medium text-slate-600 text-center">
                 <a href="#solutions" onclick="toggleMobileMenu(); navigateTo('home', 'solutions')" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Our Focus</a>
+                <a href="#demos" onclick="toggleMobileMenu(); navigateTo('home', 'demos')" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Live Demos</a>
                 <a href="#approach" onclick="toggleMobileMenu(); navigateTo('home', 'approach')" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Method</a>
                 <a href="#pricing" onclick="toggleMobileMenu(); navigateTo('home', 'pricing')" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Partnership</a>
                 <a href="#contact" onclick="toggleMobileMenu(); navigateTo('home', 'contact')" class="bg-hwblue-600 text-white py-3 rounded-xl font-bold mt-2 shadow-md">
@@ -99,7 +94,6 @@
 
     <main id="view-home" class="flex-grow fade-in overflow-x-hidden">
         
-        <!-- Hero Section -->
         <header class="hero-pattern pt-28 pb-12 sm:pt-32 sm:pb-20 px-4 sm:px-6 md:px-12 relative">
             <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <div class="text-center lg:text-left">
@@ -114,8 +108,8 @@
                         Small businesses lose 20-30% of revenue to missed calls. We build proprietary AI voice agents that answer 24/7, book appointments, and capture leads while your hands are full.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#approach" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-2 shadow-xl shadow-hwblue-600/20 w-full sm:w-auto">
-                            Explore Method <i class="fa-solid fa-arrow-right text-sm"></i>
+                        <a href="#demos" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-2 shadow-xl shadow-hwblue-600/20 w-full sm:w-auto">
+                            Test Live Agents <i class="fa-solid fa-microphone text-sm"></i>
                         </a>
                         <a href="#solutions" class="bg-white hover:bg-slate-50 text-slate-700 px-8 py-4 rounded-xl font-bold text-lg border-2 border-slate-200 transition text-center w-full sm:w-auto">
                             Industry Focus
@@ -123,7 +117,6 @@
                     </div>
                 </div>
                 
-                <!-- Hero Graphic (Visible on Mobile now, scaled down) -->
                 <div class="relative mt-8 lg:mt-0 max-w-md mx-auto lg:max-w-none w-full">
                      <div class="absolute -inset-4 bg-gradient-to-r from-hwblue-500 to-hwteal-400 opacity-20 blur-2xl rounded-[3rem]"></div>
                      <div class="bg-white p-6 sm:p-8 rounded-[2rem] shadow-2xl border border-slate-100 relative overflow-hidden">
@@ -159,7 +152,6 @@
             </div>
         </header>
 
-        <!-- Solutions Section -->
         <section id="solutions" class="py-16 sm:py-24 bg-slate-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
                 <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
@@ -169,7 +161,6 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Cards -->
                     <div class="bg-white p-6 sm:p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
                         <div class="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 text-orange-600 text-xl">
                             <i class="fa-solid fa-tools"></i>
@@ -206,7 +197,82 @@
             </div>
         </section>
 
-        <!-- Approach Section -->
+        <section id="demos" class="py-16 sm:py-24 bg-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+                <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                    <h2 class="text-xs sm:text-sm font-bold text-hwteal-600 uppercase tracking-widest mb-3 sm:mb-4">Interactive Lab</h2>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 sm:mb-6">Experience the Neural Difference</h2>
+                    <p class="text-lg sm:text-xl text-slate-600">Interact with our live industry agents below. Click the microphone icon to start a conversation and experience the zero-latency response.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8 items-start">
+                    <div class="group relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-hwblue-500 to-hwteal-400 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                        <div class="relative bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl overflow-hidden">
+                            <div class="p-6 border-b border-slate-50 flex items-center justify-between bg-slate-50/50">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-hwblue-600 rounded-xl flex items-center justify-center text-white">
+                                        <i class="fa-solid fa-scissors"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 leading-none">Barber Shop Agent</h4>
+                                        <span class="text-[10px] text-hwblue-600 font-bold uppercase tracking-tighter">Scheduling Mode</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                                    <span class="text-[10px] font-bold text-slate-400">ONLINE</span>
+                                </div>
+                            </div>
+                            <div class="aspect-[4/5] sm:aspect-video lg:aspect-square w-full bg-slate-100">
+                                <iframe 
+                                    src="https://demo.healthyworkforces.com/app/talk-to?agent_id=agent_8201k90xy5c6eab85m732w1pr2k4" 
+                                    class="w-full h-full"
+                                    allow="microphone; camera"
+                                    title="Barber Shop AI Demo">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-hwteal-500 to-hwblue-600 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                        <div class="relative bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl overflow-hidden">
+                            <div class="p-6 border-b border-slate-50 flex items-center justify-between bg-slate-50/50">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-hwteal-500 rounded-xl flex items-center justify-center text-white">
+                                        <i class="fa-solid fa-stethoscope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 leading-none">Medical Clinic Agent</h4>
+                                        <span class="text-[10px] text-hwteal-600 font-bold uppercase tracking-tighter">Patient Intake Mode</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                                    <span class="text-[10px] font-bold text-slate-400">ONLINE</span>
+                                </div>
+                            </div>
+                            <div class="aspect-[4/5] sm:aspect-video lg:aspect-square w-full bg-slate-100">
+                                <iframe 
+                                    src="https://demo.healthyworkforces.com/app/talk-to?agent_id=agent_7901k90ytdt4fnnts6mdxbqgfvzx" 
+                                    class="w-full h-full"
+                                    allow="microphone; camera"
+                                    title="Medical Clinic AI Demo">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <p class="text-slate-400 text-sm italic">
+                        <i class="fa-solid fa-lock mr-2"></i> Encrypted end-to-end voice streaming. Microphone access required for testing.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <section id="approach" class="py-16 sm:py-24 bg-slate-900 text-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center mb-12 sm:mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-hwblue-400 uppercase tracking-widest mb-3 sm:mb-4">The Consultative Method</h2>
@@ -215,7 +281,6 @@
             </div>
 
             <div class="max-w-6xl mx-auto space-y-8 sm:space-y-12">
-                <!-- Step 1 -->
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-slate-800/50 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-slate-700">
                     <div>
                         <div class="w-12 h-12 bg-hwblue-600 rounded-full flex items-center justify-center text-xl font-bold mb-6">1</div>
@@ -234,7 +299,6 @@
                     </div>
                 </div>
 
-                <!-- Step 2 -->
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-slate-800/50 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-slate-700">
                     <div class="order-2 md:order-1 bg-slate-700/30 rounded-3xl p-6 sm:p-8 border border-slate-600">
                         <i class="fa-solid fa-code-branch text-4xl sm:text-5xl text-hwteal-500 mb-4"></i>
@@ -253,7 +317,6 @@
                     </div>
                 </div>
 
-                <!-- Step 3 -->
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-slate-800/50 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-slate-700">
                     <div>
                         <div class="w-12 h-12 bg-hwblue-600 rounded-full flex items-center justify-center text-xl font-bold mb-6">3</div>
@@ -274,7 +337,6 @@
             </div>
         </section>
 
-        <!-- Pricing Section -->
         <section id="pricing" class="py-16 sm:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
                 <h2 class="text-xs sm:text-sm font-bold text-hwblue-600 uppercase tracking-widest mb-3 sm:mb-4">Operational Partnership</h2>
@@ -282,7 +344,6 @@
                 <p class="text-lg sm:text-xl text-slate-600 mb-12 sm:mb-16">Replace a high-overhead receptionist with a scalable, performance-driven AI partner.</p>
                 
                 <div class="grid md:grid-cols-3 gap-8 items-start">
-                    <!-- Starter Pilot -->
                     <div class="p-8 sm:p-10 border border-slate-200 rounded-[2.5rem] bg-slate-50/50 hover:bg-white transition-colors">
                         <h3 class="text-lg font-bold text-slate-900 mb-2">Starter Pilot</h3>
                         <div class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4">$99<span class="text-sm text-slate-400 font-medium">/mo</span></div>
@@ -301,7 +362,6 @@
                         <a href="#contact" class="block w-full py-4 rounded-2xl font-bold bg-slate-900 text-white hover:bg-slate-800 transition">Get Started</a>
                     </div>
 
-                    <!-- Professional Choice -->
                     <div class="p-8 sm:p-10 border-2 border-hwblue-500 rounded-[2.5rem] bg-white shadow-2xl relative order-first md:order-none">
                         <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-hwblue-500 text-white px-5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg w-max">Professional Choice</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2">Business Growth</h3>
@@ -320,7 +380,6 @@
                         <a href="#contact" class="block w-full py-4 rounded-2xl font-bold bg-hwblue-600 text-white hover:bg-hwblue-700 transition shadow-lg shadow-hwblue-600/30">Select Partnership</a>
                     </div>
 
-                    <!-- Enterprise -->
                     <div class="p-8 sm:p-10 border border-slate-200 rounded-[2.5rem] bg-slate-50/50 hover:bg-white transition-colors text-center">
                         <h3 class="text-lg font-bold text-slate-900 mb-2">Enterprise</h3>
                         <div class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4">Custom</div>
@@ -340,7 +399,6 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="py-16 sm:py-24 bg-gradient-to-br from-hwblue-50 to-white">
             <div class="max-w-4xl mx-auto px-4 sm:px-6">
                 <div class="rounded-[2.5rem] sm:rounded-[3rem] bg-white shadow-2xl border border-slate-100 p-8 sm:p-16 text-center">
@@ -403,7 +461,6 @@
     </footer>
 
     <script>
-        // Toggle Mobile Menu
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const icon = btn.querySelector('i');
@@ -421,7 +478,6 @@
 
         btn.addEventListener('click', toggleMobileMenu);
 
-        // Smooth Navigation
         function navigateTo(page, sectionId = null) {
             const homeView = document.getElementById('view-home');
             
@@ -429,11 +485,9 @@
                 homeView.classList.remove('hidden');
                 
                 if (sectionId) {
-                    // Small delay to allow menu to close if it was open
                     setTimeout(() => {
                         const el = document.getElementById(sectionId);
                         if (el) {
-                            // Account for fixed header height
                             const headerOffset = 80;
                             const elementPosition = el.getBoundingClientRect().top;
                             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
