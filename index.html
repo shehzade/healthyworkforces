@@ -78,16 +78,24 @@
 
         /* Mobile Menu Transitions */
         #mobile-menu {
-            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease-in-out;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.4s ease-in-out,
+                        margin-top 0.4s ease-in-out,
+                        padding-bottom 0.4s ease-in-out,
+                        border-color 0.4s ease-in-out;
             max-height: 0;
             opacity: 0;
             overflow: hidden;
+            margin-top: 0;
+            padding-bottom: 0;
+            border-top-color: transparent;
         }
         #mobile-menu.open {
             max-height: 500px;
             opacity: 1;
             margin-top: 1rem;
             padding-bottom: 0.5rem;
+            border-top-color: rgba(241, 245, 249, 0.5);
         }
 
         /* Legal Pages Styling */
