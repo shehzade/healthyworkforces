@@ -7,6 +7,9 @@
     <meta name="description" content="Recover lost revenue with custom-engineered AI voice agents. We provide on-site audits, deep CRM integrations, and high-fidelity neural voice models for local businesses.">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Particles.js Library (CDN for GitHub Pages compatibility) -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
@@ -35,9 +38,44 @@
             background-color: #f8fafc;
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e2e8f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
+
+        /* Particle Container */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Animations */
         .fade-in { animation: fadeIn 0.5s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
+
+        @keyframes neural-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(14, 165, 233, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+        }
+        .animate-neural { animation: neural-pulse 2s infinite; }
+
+        @keyframes wave {
+            0%, 100% { height: 8px; }
+            50% { height: 24px; }
+        }
+        .wave-bar {
+            width: 3px;
+            background-color: #a855f7;
+            border-radius: 2px;
+            animation: wave 1.2s ease-in-out infinite;
+        }
+
         #mobile-menu {
             transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
             max-height: 0;
@@ -48,13 +86,20 @@
             max-height: 400px;
             opacity: 1;
         }
+
+        /* Legal Pages Styling */
+        .legal-content h1 { @apply text-3xl font-bold text-slate-900 mb-6; }
+        .legal-content h2 { @apply text-xl font-bold text-slate-800 mt-8 mb-4; }
+        .legal-content p { @apply text-slate-600 mb-4 leading-relaxed; }
+        .legal-content ul { @apply list-disc list-outside ml-5 text-slate-600 mb-4; }
+        .legal-content li { @apply mb-2; }
     </style>
 </head>
 <body class="bg-white text-slate-800 antialiased flex flex-col min-h-screen overflow-x-hidden">
 
     <nav class="w-full py-4 px-4 sm:px-6 md:px-12 bg-white/95 backdrop-blur-md fixed top-0 z-50 left-0 right-0 shadow-sm border-b border-slate-100">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" onclick="navigateTo('home')" class="flex items-center group z-50">
+            <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center group z-50">
                 <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-hwblue-600 to-hwteal-500 rounded-lg flex items-center justify-center text-white text-lg sm:text-xl mr-2 sm:mr-3 group-hover:scale-105 transition">
                     <i class="fa-solid fa-heart-pulse"></i>
                 </div>
@@ -62,14 +107,14 @@
             </a>
             
             <div class="hidden md:flex space-x-8 font-medium text-slate-600">
-                <a href="#solutions" onclick="navigateTo('home', 'solutions')" class="hover:text-hwblue-600 transition">Our Focus</a>
-                <a href="#demos" onclick="navigateTo('home', 'demos')" class="hover:text-hwblue-600 transition">Live Demos</a>
-                <a href="#approach" onclick="navigateTo('home', 'approach')" class="hover:text-hwblue-600 transition">Method</a>
-                <a href="#pricing" onclick="navigateTo('home', 'pricing')" class="hover:text-hwblue-600 transition">Partnership</a>
+                <a href="#solutions" onclick="navigateTo('home', 'solutions'); return false;" class="hover:text-hwblue-600 transition">Our Focus</a>
+                <a href="#demos" onclick="navigateTo('home', 'demos'); return false;" class="hover:text-hwblue-600 transition">Live Demos</a>
+                <a href="#approach" onclick="navigateTo('home', 'approach'); return false;" class="hover:text-hwblue-600 transition">Method</a>
+                <a href="#pricing" onclick="navigateTo('home', 'pricing'); return false;" class="hover:text-hwblue-600 transition">Partnership</a>
             </div>
             
             <div class="hidden md:block">
-                <a href="#contact" onclick="navigateTo('home', 'contact')" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-5 py-2.5 rounded-full font-semibold transition shadow-lg shadow-hwblue-500/20 text-sm">
+                <a href="#contact" onclick="navigateTo('home', 'contact'); return false;" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-5 py-2.5 rounded-full font-semibold transition shadow-lg shadow-hwblue-500/20 text-sm">
                     Book Strategy Session
                 </a>
             </div>
@@ -81,23 +126,27 @@
 
         <div id="mobile-menu" class="md:hidden bg-white w-full border-t border-slate-100 absolute top-full left-0 shadow-xl">
             <div class="flex flex-col p-6 space-y-4 font-medium text-slate-600 text-center">
-                <a href="#solutions" onclick="toggleMobileMenu(); navigateTo('home', 'solutions')" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Our Focus</a>
-                <a href="#demos" onclick="toggleMobileMenu(); navigateTo('home', 'demos')" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Live Demos</a>
-                <a href="#approach" onclick="toggleMobileMenu(); navigateTo('home', 'approach')" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Method</a>
-                <a href="#pricing" onclick="toggleMobileMenu(); navigateTo('home', 'pricing')" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Partnership</a>
-                <a href="#contact" onclick="toggleMobileMenu(); navigateTo('home', 'contact')" class="bg-hwblue-600 text-white py-3 rounded-xl font-bold mt-2 shadow-md">
+                <a href="#solutions" onclick="toggleMobileMenu(); navigateTo('home', 'solutions'); return false;" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Our Focus</a>
+                <a href="#demos" onclick="toggleMobileMenu(); navigateTo('home', 'demos'); return false;" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Live Demos</a>
+                <a href="#approach" onclick="toggleMobileMenu(); navigateTo('home', 'approach'); return false;" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Method</a>
+                <a href="#pricing" onclick="toggleMobileMenu(); navigateTo('home', 'pricing'); return false;" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Partnership</a>
+                <a href="#contact" onclick="toggleMobileMenu(); navigateTo('home', 'contact'); return false;" class="bg-hwblue-600 text-white py-3 rounded-xl font-bold mt-2 shadow-md">
                     Book Strategy Session
                 </a>
             </div>
         </div>
     </nav>
 
+    <!-- Main Home View -->
     <main id="view-home" class="flex-grow fade-in overflow-x-hidden">
         
+        <!-- Hero Section with Particles -->
         <header class="hero-pattern pt-28 pb-12 sm:pt-32 sm:pb-20 px-4 sm:px-6 md:px-12 relative">
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div id="particles-js"></div>
+            
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center hero-content-wrapper">
                 <div class="text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full bg-hwblue-50 border border-hwblue-100 text-hwblue-700 text-xs sm:text-sm font-semibold mx-auto lg:mx-0">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full bg-hwblue-50 border border-hwblue-100 text-hwblue-700 text-xs sm:text-sm font-semibold mx-auto lg:mx-0 animate-neural">
                         <i class="fa-solid fa-microchip"></i>
                         <span>Custom-Engineered Neural Voice Networks</span>
                     </div>
@@ -108,10 +157,10 @@
                         Small businesses lose 20-30% of revenue to missed calls. We build proprietary AI voice agents that answer 24/7, book appointments, and capture leads while your hands are full.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#demos" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-2 shadow-xl shadow-hwblue-600/20 w-full sm:w-auto">
+                        <a href="#demos" onclick="navigateTo('home', 'demos'); return false;" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-2 shadow-xl shadow-hwblue-600/20 w-full sm:w-auto">
                             Test Live Agents <i class="fa-solid fa-microphone text-sm"></i>
                         </a>
-                        <a href="#solutions" class="bg-white hover:bg-slate-50 text-slate-700 px-8 py-4 rounded-xl font-bold text-lg border-2 border-slate-200 transition text-center w-full sm:w-auto">
+                        <a href="#solutions" onclick="navigateTo('home', 'solutions'); return false;" class="bg-white hover:bg-slate-50 text-slate-700 px-8 py-4 rounded-xl font-bold text-lg border-2 border-slate-200 transition text-center w-full sm:w-auto">
                             Industry Focus
                         </a>
                     </div>
@@ -206,9 +255,10 @@
                 </div>
 
                 <div class="grid lg:grid-cols-2 gap-8 items-start">
+                    <!-- Barber Agent Card -->
                     <div class="group relative">
-                        <div class="absolute -inset-1 bg-gradient-to-r from-hwblue-500 to-hwteal-400 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                        <div class="relative bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl overflow-hidden">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-hwblue-500 to-hwteal-400 rounded-[2.5rem] blur-lg opacity-10 group-hover:opacity-40 transition duration-500"></div>
+                        <div class="relative bg-white rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden z-10">
                             <div class="p-6 border-b border-slate-50 flex items-center justify-between bg-slate-50/50">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 bg-hwblue-600 rounded-xl flex items-center justify-center text-white">
@@ -235,9 +285,10 @@
                         </div>
                     </div>
 
+                    <!-- Medical Agent Card -->
                     <div class="group relative">
-                        <div class="absolute -inset-1 bg-gradient-to-r from-hwteal-500 to-hwblue-600 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                        <div class="relative bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl overflow-hidden">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-hwteal-500 to-hwblue-600 rounded-[2.5rem] blur-lg opacity-10 group-hover:opacity-40 transition duration-500"></div>
+                        <div class="relative bg-white rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden z-10">
                             <div class="p-6 border-b border-slate-50 flex items-center justify-between bg-slate-50/50">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 bg-hwteal-500 rounded-xl flex items-center justify-center text-white">
@@ -281,6 +332,7 @@
             </div>
 
             <div class="max-w-6xl mx-auto space-y-8 sm:space-y-12">
+                <!-- Step 1 -->
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-slate-800/50 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-slate-700">
                     <div>
                         <div class="w-12 h-12 bg-hwblue-600 rounded-full flex items-center justify-center text-xl font-bold mb-6">1</div>
@@ -299,6 +351,7 @@
                     </div>
                 </div>
 
+                <!-- Step 2 -->
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-slate-800/50 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-slate-700">
                     <div class="order-2 md:order-1 bg-slate-700/30 rounded-3xl p-6 sm:p-8 border border-slate-600">
                         <i class="fa-solid fa-code-branch text-4xl sm:text-5xl text-hwteal-500 mb-4"></i>
@@ -317,6 +370,7 @@
                     </div>
                 </div>
 
+                <!-- Step 3 -->
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-slate-800/50 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-slate-700">
                     <div>
                         <div class="w-12 h-12 bg-hwblue-600 rounded-full flex items-center justify-center text-xl font-bold mb-6">3</div>
@@ -329,8 +383,17 @@
                             <li class="flex items-start"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3 mt-1"></i> Automatic language detection</li>
                         </ul>
                     </div>
-                    <div class="bg-slate-700/30 rounded-3xl p-6 sm:p-8 border border-slate-600 text-center">
-                        <i class="fa-solid fa-wave-square text-4xl sm:text-5xl text-purple-500 mb-4"></i>
+                    <div class="bg-slate-700/30 rounded-3xl p-6 sm:p-8 border border-slate-600 text-left">
+                        <div class="flex items-end gap-1 mb-6 h-8">
+                            <div class="wave-bar" style="animation-delay: 0.1s"></div>
+                            <div class="wave-bar" style="animation-delay: 0.3s; height: 18px"></div>
+                            <div class="wave-bar" style="animation-delay: 0.2s; height: 12px"></div>
+                            <div class="wave-bar" style="animation-delay: 0.4s; height: 28px"></div>
+                            <div class="wave-bar" style="animation-delay: 0.5s; height: 15px"></div>
+                            <div class="wave-bar" style="animation-delay: 0.3s; height: 22px"></div>
+                            <div class="wave-bar" style="animation-delay: 0.1s; height: 10px"></div>
+                            <i class="fa-solid fa-wave-square text-4xl sm:text-5xl text-purple-500 ml-4"></i>
+                        </div>
                         <p class="text-sm italic text-slate-400">"Your customers will feel supported, heard, and helped without any robotic lag."</p>
                     </div>
                 </div>
@@ -359,7 +422,7 @@
                             <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwblue-500 mr-3"></i> Custom Neural Voice</li>
                             <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwblue-500 mr-3"></i> Basic Webhook Integration</li>
                         </ul>
-                        <a href="#contact" class="block w-full py-4 rounded-2xl font-bold bg-slate-900 text-white hover:bg-slate-800 transition">Get Started</a>
+                        <a href="#contact" onclick="navigateTo('home', 'contact'); return false;" class="block w-full py-4 rounded-2xl font-bold bg-slate-900 text-white hover:bg-slate-800 transition">Get Started</a>
                     </div>
 
                     <div class="p-8 sm:p-10 border-2 border-hwblue-500 rounded-[2.5rem] bg-white shadow-2xl relative order-first md:order-none">
@@ -377,7 +440,7 @@
                             <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwblue-500 mr-3"></i> $0.60/min Talk Time Overage</li>
                             <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwblue-500 mr-3"></i> Deep CRM/PMS Integration</li>
                         </ul>
-                        <a href="#contact" class="block w-full py-4 rounded-2xl font-bold bg-hwblue-600 text-white hover:bg-hwblue-700 transition shadow-lg shadow-hwblue-600/30">Select Partnership</a>
+                        <a href="#contact" onclick="navigateTo('home', 'contact'); return false;" class="block w-full py-4 rounded-2xl font-bold bg-hwblue-600 text-white hover:bg-hwblue-700 transition shadow-lg shadow-hwblue-600/30">Select Partnership</a>
                     </div>
 
                     <div class="p-8 sm:p-10 border border-slate-200 rounded-[2.5rem] bg-slate-50/50 hover:bg-white transition-colors text-center">
@@ -393,7 +456,7 @@
                             <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwblue-500 mr-3"></i> Proprietary High-Tier Voices</li>
                             <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwblue-500 mr-3"></i> Custom Operational Flows</li>
                         </ul>
-                        <a href="#contact" class="block w-full py-4 rounded-2xl font-bold bg-slate-900 text-white hover:bg-slate-800 transition">Contact Architect</a>
+                        <a href="#contact" onclick="navigateTo('home', 'contact'); return false;" class="block w-full py-4 rounded-2xl font-bold bg-slate-900 text-white hover:bg-slate-800 transition">Contact Architect</a>
                     </div>
                 </div>
             </div>
@@ -422,7 +485,68 @@
         </section>
     </main>
 
+    <!-- Privacy Policy View (Hidden by Default) -->
+    <section id="view-privacy" class="hidden fade-in pt-32 pb-20 px-6 max-w-4xl mx-auto flex-grow legal-content">
+        <h1 class="text-4xl font-extrabold text-slate-900 mb-8">Privacy Policy</h1>
+        <p class="text-sm text-slate-500 mb-8">Last Updated: January 1, 2025</p>
+        
+        <p>Snooze Theory LLC ("we," "our," or "us") operates the HealthyWorkforces services. This Privacy Policy explains how we collect, use, and protect your information when you use our AI voice agent services, website, and related applications.</p>
+        <br></br>
+        <h2>1. Information We Collect</h2>
+		<br></br>
+        <ul>
+            <li><strong>Voice Data:</strong> We process audio recordings solely for the purpose of transcribing inquiries and executing voice commands via our neural networks.</li>
+            <li><strong>Business Information:</strong> We collect details about your business operations, pricing, and scheduling to configure your AI agents.</li>
+            <li><strong>End-User Data:</strong> We may temporarily process phone numbers and names of callers for the purpose of booking appointments and sending confirmations.</li>
+        </ul>
+		<br></br>
+        <h2>2. How We Use Your Information</h2>
+		<br></br>
+        <p>We use the collected data to provide, maintain, and improve our AI voice services. This includes configuring your custom agents, processing live calls, and integrating with your CRM/PMS systems. We do not sell your data to third parties.</p>
+		<br></br>
+        <h2>3. Data Security</h2>
+		<br></br>
+        <p>We implement enterprise-grade security measures to protect your data. Voice traffic is encrypted in transit and at rest. Access to your operational data is restricted to authorized engineers for maintenance purposes only.</p>
+		<br></br>
+        <h2>4. Contact Us</h2>	
+		<br></br>	
+        <p>If you have questions about this policy, please contact us at support@healthyworkforces.com.</p>
+    </section>
+
+    <!-- Terms of Service View (Hidden by Default) -->
+    <section id="view-terms" class="hidden fade-in pt-32 pb-20 px-6 max-w-4xl mx-auto flex-grow legal-content">
+        <h1 class="text-4xl font-extrabold text-slate-900 mb-8">Terms of Service</h1>
+        <p class="text-sm text-slate-500 mb-8">Last Updated: January 1, 2025</p>
+
+        <p>Please read these Terms of Service ("Terms") carefully before using the HealthyWorkforces services operated by Snooze Theory LLC.</p>
+		<br></br>
+        <h2>1. Acceptance of Terms</h2>
+		<br></br>
+        <p>By accessing or using our services, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the service.</p>
+		<br></br>
+        <h2>2. Services Provided</h2>
+		<br></br>
+        <p>Snooze Theory LLC provides custom-engineered AI voice agents for business automation. Services are provided on a subscription basis as detailed in your specific service agreement.</p>
+		<br></br>
+        <h2>3. Use License</h2>
+		<br></br>
+        <p>Permission is granted to use the AI agents for legitimate business purposes. You agree not to use the service for any illegal or unauthorized purpose, including harassment or spam.</p>
+		<br></br>
+        <h2>4. Payment and Billing</h2>
+		<br></br>
+        <p>Services are billed monthly. Failure to pay may result in the suspension of your AI agent. Custom configuration fees are non-refundable once engineering work has commenced.</p>
+		<br></br>
+        <h2>5. Limitation of Liability</h2>
+		<br></br>
+        <p>Snooze Theory LLC shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, or goodwill, arising out of your use of the service.</p>
+		<br></br>
+        <h2>6. Governing Law</h2>
+		<br></br>
+        <p>These Terms shall be governed by the laws of the State of Texas, without regard to its conflict of law provisions.</p>
+    </section>
+
     <footer class="bg-slate-900 pt-16 sm:pt-20 pb-10 text-slate-500 border-t border-slate-800">
+        <!-- Footer Content -->
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16 text-left">
             <div class="md:col-span-2 col-span-4">
                 <div class="flex items-center mb-6">
@@ -442,16 +566,16 @@
             <div class="col-span-2 md:col-span-1">
                 <h4 class="font-bold text-white mb-6 uppercase tracking-widest text-[10px]">Operations</h4>
                 <ul class="space-y-4 text-sm">
-                    <li><a href="#approach" onclick="navigateTo('home', 'approach')" class="hover:text-hwblue-500 transition">Operational Audits</a></li>
-                    <li><a href="#approach" onclick="navigateTo('home', 'approach')" class="hover:text-hwblue-500 transition">Neural Voice Synthesis</a></li>
-                    <li><a href="#pricing" onclick="navigateTo('home', 'pricing')" class="hover:text-hwblue-500 transition">Partner ROI</a></li>
+                    <li><a href="#approach" onclick="navigateTo('home', 'approach'); return false;" class="hover:text-hwblue-500 transition cursor-pointer">Operational Audits</a></li>
+                    <li><a href="#approach" onclick="navigateTo('home', 'approach'); return false;" class="hover:text-hwblue-500 transition cursor-pointer">Neural Voice Synthesis</a></li>
+                    <li><a href="#pricing" onclick="navigateTo('home', 'pricing'); return false;" class="hover:text-hwblue-500 transition cursor-pointer">Partner ROI</a></li>
                 </ul>
             </div>
             <div class="col-span-2 md:col-span-1">
                 <h4 class="font-bold text-white mb-6 uppercase tracking-widest text-[10px]">Information</h4>
                 <ul class="space-y-4 text-sm text-xs">
-                    <li>Privacy Policy</li>
-                    <li>Terms of Service</li>
+                    <li><a href="#" onclick="navigateTo('privacy'); return false;" class="hover:text-hwblue-500 transition cursor-pointer">Privacy Policy</a></li>
+                    <li><a href="#" onclick="navigateTo('terms'); return false;" class="hover:text-hwblue-500 transition cursor-pointer">Terms of Service</a></li>
                 </ul>
             </div>
         </div>
@@ -480,7 +604,15 @@
 
         function navigateTo(page, sectionId = null) {
             const homeView = document.getElementById('view-home');
+            const privacyView = document.getElementById('view-privacy');
+            const termsView = document.getElementById('view-terms');
             
+            // Hide all first
+            homeView.classList.add('hidden');
+            if(privacyView) privacyView.classList.add('hidden');
+            if(termsView) termsView.classList.add('hidden');
+            
+            // Show requested view
             if (page === 'home') {
                 homeView.classList.remove('hidden');
                 
@@ -501,8 +633,39 @@
                 } else {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
-            } 
+            } else if (page === 'privacy') {
+                if(privacyView) privacyView.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (page === 'terms') {
+                if(termsView) termsView.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
+
+        // Initialize Particles.js
+        particlesJS('particles-js', {
+          "particles": {
+            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#0ea5e9" }, // hwblue-500
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.3, "random": false },
+            "size": { "value": 3, "random": true },
+            "line_linked": {
+              "enable": true,
+              "distance": 150,
+              "color": "#14b8a6", // hwteal-500
+              "opacity": 0.2,
+              "width": 1
+            },
+            "move": { "enable": true, "speed": 1.5, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+            "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+          },
+          "retina_detect": true
+        });
     </script>
 </body>
 </html>
