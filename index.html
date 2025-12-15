@@ -15,7 +15,7 @@
             theme: {
                 extend: {
                     colors: {
-                        hwblue: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 900: '#0c4a6e' },
+                        hwblue: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e' },
                         hwteal: { 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488' }
                     },
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
@@ -37,77 +37,116 @@
         }
         .fade-in { animation: fadeIn 0.5s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* Mobile Menu Transitions */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
     </style>
 </head>
-<body class="bg-white text-slate-800 antialiased flex flex-col min-h-screen">
+<body class="bg-white text-slate-800 antialiased flex flex-col min-h-screen overflow-x-hidden">
 
-    <nav class="w-full py-4 px-6 md:px-12 flex justify-between items-center max-w-7xl mx-auto border-b border-slate-100 bg-white/95 backdrop-blur-md fixed top-0 z-50 left-0 right-0 shadow-sm">
-        <a href="#" onclick="navigateTo('home')" class="flex items-center group">
-            <div class="w-10 h-10 bg-gradient-to-br from-hwblue-600 to-hwteal-500 rounded-lg flex items-center justify-center text-white text-xl mr-3 group-hover:scale-105 transition">
-                <i class="fa-solid fa-heart-pulse"></i>
+    <!-- Navigation -->
+    <nav class="w-full py-4 px-4 sm:px-6 md:px-12 bg-white/95 backdrop-blur-md fixed top-0 z-50 left-0 right-0 shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" onclick="navigateTo('home')" class="flex items-center group z-50">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-hwblue-600 to-hwteal-500 rounded-lg flex items-center justify-center text-white text-lg sm:text-xl mr-2 sm:mr-3 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <div class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">Healthy<span class="text-hwblue-600">Workforces</span></div>
+            </a>
+            
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex space-x-8 font-medium text-slate-600">
+                <a href="#solutions" onclick="navigateTo('home', 'solutions')" class="hover:text-hwblue-600 transition">Our Focus</a>
+                <a href="#approach" onclick="navigateTo('home', 'approach')" class="hover:text-hwblue-600 transition">Method</a>
+                <a href="#pricing" onclick="navigateTo('home', 'pricing')" class="hover:text-hwblue-600 transition">Partnership</a>
             </div>
-            <div class="text-2xl font-bold tracking-tight text-slate-900">Healthy<span class="text-hwblue-600">Workforces</span></div>
-        </a>
-        
-        <div class="hidden md:flex space-x-8 font-medium text-slate-600" id="nav-links">
-            <a href="#solutions" onclick="navigateTo('home', 'solutions')" class="hover:text-hwblue-600 transition">Our Focus</a>
-            <a href="#approach" onclick="navigateTo('home', 'approach')" class="hover:text-hwblue-600 transition">Method</a>
-            <a href="#pricing" onclick="navigateTo('home', 'pricing')" class="hover:text-hwblue-600 transition">Partnership</a>
+            
+            <!-- Desktop CTA -->
+            <div class="hidden md:block">
+                <a href="#contact" onclick="navigateTo('home', 'contact')" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-5 py-2.5 rounded-full font-semibold transition shadow-lg shadow-hwblue-500/20 text-sm">
+                    Book Strategy Session
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-700 text-2xl focus:outline-none z-50 p-2" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
-        
-        <a href="#contact" onclick="navigateTo('home', 'contact')" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-5 py-2.5 rounded-full font-semibold transition shadow-lg shadow-hwblue-500/20 text-sm">
-            Book Strategy Session
-        </a>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="md:hidden bg-white w-full border-t border-slate-100 absolute top-full left-0 shadow-xl">
+            <div class="flex flex-col p-6 space-y-4 font-medium text-slate-600 text-center">
+                <a href="#solutions" onclick="toggleMobileMenu(); navigateTo('home', 'solutions')" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Our Focus</a>
+                <a href="#approach" onclick="toggleMobileMenu(); navigateTo('home', 'approach')" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Method</a>
+                <a href="#pricing" onclick="toggleMobileMenu(); navigateTo('home', 'pricing')" class="py-2 hover:text-hwblue-600 border-b border-slate-50">Partnership</a>
+                <a href="#contact" onclick="toggleMobileMenu(); navigateTo('home', 'contact')" class="bg-hwblue-600 text-white py-3 rounded-xl font-bold mt-2 shadow-md">
+                    Book Strategy Session
+                </a>
+            </div>
+        </div>
     </nav>
 
-    <main id="view-home" class="flex-grow pt-24 fade-in">
+    <main id="view-home" class="flex-grow fade-in overflow-x-hidden">
         
-        <header class="hero-pattern pt-24 pb-20 px-6 md:px-12">
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-hwblue-50 border border-hwblue-100 text-hwblue-700 text-sm font-semibold">
+        <!-- Hero Section -->
+        <header class="hero-pattern pt-28 pb-12 sm:pt-32 sm:pb-20 px-4 sm:px-6 md:px-12 relative">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full bg-hwblue-50 border border-hwblue-100 text-hwblue-700 text-xs sm:text-sm font-semibold mx-auto lg:mx-0">
                         <i class="fa-solid fa-microchip"></i>
-                        Custom-Engineered Neural Voice Networks
+                        <span>Custom-Engineered Neural Voice Networks</span>
                     </div>
-                    <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-slate-900">
-                        Never Miss a Customer <span class="gradient-text">Call Ever Again.</span>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-slate-900">
+                        Never Miss a Customer <span class="gradient-text block sm:inline">Call Again.</span>
                     </h1>
-                    <p class="text-lg text-slate-600 mb-8 max-w-xl leading-relaxed">
-                        Small businesses lose 20 to 30 percent of their potential revenue to missed calls. We build proprietary AI voice agents that are custom-trained on your specific business data. Our systems answer 24/7, book appointments, and capture leads while your hands are full.
+                    <p class="text-base sm:text-lg text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Small businesses lose 20-30% of revenue to missed calls. We build proprietary AI voice agents that answer 24/7, book appointments, and capture leads while your hands are full.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#approach" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-2 shadow-xl shadow-hwblue-600/20">
-                            Explore Our Method <i class="fa-solid fa-arrow-right"></i>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#approach" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-2 shadow-xl shadow-hwblue-600/20 w-full sm:w-auto">
+                            Explore Method <i class="fa-solid fa-arrow-right text-sm"></i>
                         </a>
-                        <a href="#solutions" class="bg-white hover:bg-slate-50 text-slate-700 px-8 py-4 rounded-xl font-bold text-lg border-2 border-slate-200 transition text-center">
+                        <a href="#solutions" class="bg-white hover:bg-slate-50 text-slate-700 px-8 py-4 rounded-xl font-bold text-lg border-2 border-slate-200 transition text-center w-full sm:w-auto">
                             Industry Focus
                         </a>
                     </div>
                 </div>
                 
-                <div class="relative hidden lg:block">
+                <!-- Hero Graphic (Visible on Mobile now, scaled down) -->
+                <div class="relative mt-8 lg:mt-0 max-w-md mx-auto lg:max-w-none w-full">
                      <div class="absolute -inset-4 bg-gradient-to-r from-hwblue-500 to-hwteal-400 opacity-20 blur-2xl rounded-[3rem]"></div>
-                     <div class="bg-white p-8 rounded-[2rem] shadow-2xl border border-slate-100 relative overflow-hidden">
-                        <div class="flex items-center justify-between mb-8">
-                            <span class="font-bold text-slate-400 text-xs tracking-widest uppercase tracking-[0.2em]">Live Operation Simulation</span>
+                     <div class="bg-white p-6 sm:p-8 rounded-[2rem] shadow-2xl border border-slate-100 relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-6 sm:mb-8">
+                            <span class="font-bold text-slate-400 text-[10px] sm:text-xs tracking-widest uppercase">Live Operation Simulation</span>
                             <div class="flex gap-2">
-                                <span class="text-[10px] font-bold text-hwblue-600 bg-hwblue-50 px-2 py-0.5 rounded">Neural Logic Active</span>
+                                <span class="text-[10px] font-bold text-hwblue-600 bg-hwblue-50 px-2 py-0.5 rounded animate-pulse">Neural Logic Active</span>
                             </div>
                         </div>
                         <div class="space-y-4">
                             <div class="flex justify-start">
-                                <div class="bg-slate-100 p-4 rounded-2xl rounded-tl-none max-w-[85%] text-sm text-slate-700">
+                                <div class="bg-slate-100 p-3 sm:p-4 rounded-2xl rounded-tl-none max-w-[90%] text-xs sm:text-sm text-slate-700">
                                     "I need to book a plumbing repair for this evening. Do you have any open slots?"
                                 </div>
                             </div>
                             <div class="flex justify-end">
-                                <div class="bg-hwblue-600 text-white p-4 rounded-2xl rounded-tr-none max-w-[85%] text-sm shadow-md">
+                                <div class="bg-hwblue-600 text-white p-3 sm:p-4 rounded-2xl rounded-tr-none max-w-[90%] text-xs sm:text-sm shadow-md">
                                     "Yes, I see availability at 7:00 PM tonight. Should I secure that for you and send the confirmation to this number?"
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-8 pt-6 border-t border-slate-50 flex items-center gap-4">
-                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                        <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-slate-50 flex items-center gap-3 sm:gap-4">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-sm sm:text-base">
                                 <i class="fa-solid fa-sync"></i>
                             </div>
                             <div>
@@ -120,16 +159,18 @@
             </div>
         </header>
 
-        <section id="solutions" class="py-24 bg-slate-50">
-            <div class="max-w-7xl mx-auto px-6 md:px-12">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-sm font-bold text-hwblue-600 uppercase tracking-widest mb-4">Core Specializations</h2>
-                    <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Built for Service Excellence</h2>
-                    <p class="text-xl text-slate-600">We specialize in industries where immediate phone presence is the difference between a new client and a lost lead.</p>
+        <!-- Solutions Section -->
+        <section id="solutions" class="py-16 sm:py-24 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+                <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                    <h2 class="text-xs sm:text-sm font-bold text-hwblue-600 uppercase tracking-widest mb-3 sm:mb-4">Core Specializations</h2>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 sm:mb-6">Built for Service Excellence</h2>
+                    <p class="text-lg sm:text-xl text-slate-600">We specialize in industries where immediate phone presence is the difference between a new client and a lost lead.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
+                    <!-- Cards -->
+                    <div class="bg-white p-6 sm:p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
                         <div class="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 text-orange-600 text-xl">
                             <i class="fa-solid fa-tools"></i>
                         </div>
@@ -137,7 +178,7 @@
                         <p class="text-xs text-slate-500 mb-4 font-semibold uppercase tracking-wider">HVAC | Plumbing | Electric</p>
                         <p class="text-sm text-slate-600 leading-relaxed">Our agents handle emergency dispatch and quote intake while your technicians are focused on the job site.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
+                    <div class="bg-white p-6 sm:p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
                         <div class="w-12 h-12 bg-hwblue-100 rounded-2xl flex items-center justify-center mb-6 text-hwblue-600 text-xl">
                             <i class="fa-solid fa-hospital-user"></i>
                         </div>
@@ -145,7 +186,7 @@
                         <p class="text-xs text-slate-500 mb-4 font-semibold uppercase tracking-wider">Clinics | Dental | Specialists</p>
                         <p class="text-sm text-slate-600 leading-relaxed">Provide 24/7 patient intake and scheduling without overwhelming your front desk staff.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
+                    <div class="bg-white p-6 sm:p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
                         <div class="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center mb-6 text-slate-700 text-xl">
                             <i class="fa-solid fa-gavel"></i>
                         </div>
@@ -153,7 +194,7 @@
                         <p class="text-xs text-slate-500 mb-4 font-semibold uppercase tracking-wider">Personal Injury | Intake</p>
                         <p class="text-sm text-slate-600 leading-relaxed">Ensure every potential case is captured and qualified instantly before the lead calls another firm.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
+                    <div class="bg-white p-6 sm:p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
                         <div class="w-12 h-12 bg-red-100 rounded-2xl flex items-center justify-center mb-6 text-red-600 text-xl">
                             <i class="fa-solid fa-utensils"></i>
                         </div>
@@ -165,80 +206,86 @@
             </div>
         </section>
 
-        <section id="approach" class="py-24 bg-slate-900 text-white">
-            <div class="max-w-7xl mx-auto px-6 md:px-12 text-center mb-16">
-                <h2 class="text-sm font-bold text-hwblue-400 uppercase tracking-widest mb-4">The Consultative Method</h2>
-                <h2 class="text-4xl font-extrabold mb-6">How Your AI Agent is Engineered</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto text-lg">We do not simply provide a login. We build a custom digital employee through a deep study of your business.</p>
+        <!-- Approach Section -->
+        <section id="approach" class="py-16 sm:py-24 bg-slate-900 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center mb-12 sm:mb-16">
+                <h2 class="text-xs sm:text-sm font-bold text-hwblue-400 uppercase tracking-widest mb-3 sm:mb-4">The Consultative Method</h2>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 sm:mb-6">How Your AI Agent is Engineered</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-base sm:text-lg">We do not simply provide a login. We build a custom digital employee through a deep study of your business.</p>
             </div>
 
-            <div class="max-w-6xl mx-auto space-y-12">
-                <div class="grid md:grid-cols-2 gap-12 items-center bg-slate-800/50 p-8 md:p-12 rounded-[3rem] border border-slate-700">
+            <div class="max-w-6xl mx-auto space-y-8 sm:space-y-12">
+                <!-- Step 1 -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-slate-800/50 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-slate-700">
                     <div>
                         <div class="w-12 h-12 bg-hwblue-600 rounded-full flex items-center justify-center text-xl font-bold mb-6">1</div>
-                        <h3 class="text-3xl font-bold mb-4">On-Site Operational Study</h3>
-                        <p class="text-slate-300 leading-relaxed mb-6">
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-4">On-Site Operational Study</h3>
+                        <p class="text-slate-300 leading-relaxed mb-6 text-sm sm:text-base">
                             We begin by analyzing your office workflows. We study how your staff handles calls and identify exactly where revenue is being lost. By understanding your unique tone and business logic, we create a blueprint that mimics your top-performing employee.
                         </p>
                         <ul class="space-y-3 text-sm text-slate-400">
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3"></i> Observation of current phone intake and FAQ patterns</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3"></i> Identification of peak call volume and staff bottlenecks</li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3 mt-1"></i> Observation of current phone intake</li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3 mt-1"></i> Identification of staff bottlenecks</li>
                         </ul>
                     </div>
-                    <div class="bg-slate-700/30 rounded-3xl p-8 border border-slate-600">
-                        <i class="fa-solid fa-clipboard-list text-5xl text-hwblue-500 mb-4"></i>
+                    <div class="bg-slate-700/30 rounded-3xl p-6 sm:p-8 border border-slate-600">
+                        <i class="fa-solid fa-clipboard-list text-4xl sm:text-5xl text-hwblue-500 mb-4"></i>
                         <p class="text-sm italic text-slate-400">"Your AI agent is trained on your actual business data, ensuring it provides answers with perfect accuracy every time."</p>
                     </div>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-12 items-center bg-slate-800/50 p-8 md:p-12 rounded-[3rem] border border-slate-700">
-                    <div class="order-2 md:order-1 bg-slate-700/30 rounded-3xl p-8 border border-slate-600">
-                        <i class="fa-solid fa-code-branch text-5xl text-hwteal-500 mb-4"></i>
+                <!-- Step 2 -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-slate-800/50 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-slate-700">
+                    <div class="order-2 md:order-1 bg-slate-700/30 rounded-3xl p-6 sm:p-8 border border-slate-600">
+                        <i class="fa-solid fa-code-branch text-4xl sm:text-5xl text-hwteal-500 mb-4"></i>
                         <p class="text-sm italic text-slate-400">"We bridge your existing CRM and scheduling software with our neural voice network for instant data synchronization."</p>
                     </div>
                     <div class="order-1 md:order-2">
                         <div class="w-12 h-12 bg-hwblue-600 rounded-full flex items-center justify-center text-xl font-bold mb-6">2</div>
-                        <h3 class="text-3xl font-bold mb-4">Deep Software Integration</h3>
-                        <p class="text-slate-300 leading-relaxed mb-6">
-                            Intelligence is useless without the ability to act. Our engineers build custom integrations into your CRM, Patient Management Systems (PMS), or local databases. Your agent reads live availability and writes new appointments directly into your calendar.
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-4">Deep Software Integration</h3>
+                        <p class="text-slate-300 leading-relaxed mb-6 text-sm sm:text-base">
+                            Intelligence is useless without the ability to act. Our engineers build custom integrations into your CRM, PMS, or local databases. Your agent reads live availability and writes new appointments directly into your calendar.
                         </p>
                         <ul class="space-y-3 text-sm text-slate-400">
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3"></i> Native API connectivity to your professional software stack</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3"></i> Secure and encrypted data handling for complete privacy</li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3 mt-1"></i> Native API connectivity</li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3 mt-1"></i> Secure and encrypted data handling</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-12 items-center bg-slate-800/50 p-8 md:p-12 rounded-[3rem] border border-slate-700">
+                <!-- Step 3 -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-slate-800/50 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-slate-700">
                     <div>
                         <div class="w-12 h-12 bg-hwblue-600 rounded-full flex items-center justify-center text-xl font-bold mb-6">3</div>
-                        <h3 class="text-3xl font-bold mb-4">Neural Voice Synthesis</h3>
-                        <p class="text-slate-300 leading-relaxed mb-6">
-                            We deploy high-fidelity voice models that sound indistinguishable from a professional receptionist. Our low-latency network architecture ensures zero-delay conversations. For businesses with global customers, our agents include multilingual detection and switching.
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-4">Neural Voice Synthesis</h3>
+                        <p class="text-slate-300 leading-relaxed mb-6 text-sm sm:text-base">
+                            We deploy high-fidelity voice models that sound indistinguishable from a professional receptionist. Our low-latency network architecture ensures zero-delay conversations.
                         </p>
                         <ul class="space-y-3 text-sm text-slate-400">
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3"></i> Sub-second response time via proprietary SIP networking</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3"></i> Automatic language detection for diverse customer bases</li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3 mt-1"></i> Sub-second response time</li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-hwteal-400 mr-3 mt-1"></i> Automatic language detection</li>
                         </ul>
                     </div>
-                    <div class="bg-slate-700/30 rounded-3xl p-8 border border-slate-600 text-center">
-                        <i class="fa-solid fa-wave-square text-5xl text-purple-500 mb-4"></i>
-                        <p class="text-sm italic text-slate-400">"The focus is on seamless communication. Your customers will feel supported, heard, and helped without any robotic lag."</p>
+                    <div class="bg-slate-700/30 rounded-3xl p-6 sm:p-8 border border-slate-600 text-center">
+                        <i class="fa-solid fa-wave-square text-4xl sm:text-5xl text-purple-500 mb-4"></i>
+                        <p class="text-sm italic text-slate-400">"Your customers will feel supported, heard, and helped without any robotic lag."</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="pricing" class="py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-6 md:px-12 text-center">
-                <h2 class="text-sm font-bold text-hwblue-600 uppercase tracking-widest mb-4">Operational Partnership</h2>
-                <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Premium Value. Transparent Economics.</h2>
-                <p class="text-xl text-slate-600 mb-16">Replace a high-overhead receptionist with a scalable, performance-driven AI partner.</p>
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
+                <h2 class="text-xs sm:text-sm font-bold text-hwblue-600 uppercase tracking-widest mb-3 sm:mb-4">Operational Partnership</h2>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6">Premium Value. Transparent Economics.</h2>
+                <p class="text-lg sm:text-xl text-slate-600 mb-12 sm:mb-16">Replace a high-overhead receptionist with a scalable, performance-driven AI partner.</p>
                 
                 <div class="grid md:grid-cols-3 gap-8 items-start">
-                    <div class="p-10 border border-slate-200 rounded-[2.5rem] bg-slate-50/50 hover:bg-white transition-colors">
+                    <!-- Starter Pilot -->
+                    <div class="p-8 sm:p-10 border border-slate-200 rounded-[2.5rem] bg-slate-50/50 hover:bg-white transition-colors">
                         <h3 class="text-lg font-bold text-slate-900 mb-2">Starter Pilot</h3>
-                        <div class="text-5xl font-extrabold text-slate-900 mb-4">$99<span class="text-sm text-slate-400 font-medium">/mo</span></div>
+                        <div class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4">$99<span class="text-sm text-slate-400 font-medium">/mo</span></div>
                         <p class="text-slate-500 text-sm mb-8">Test with one high-fidelity agent.</p>
                         <div class="mb-8 p-4 bg-hwblue-50 rounded-2xl border border-hwblue-100 text-center">
                             <p class="text-xs font-bold text-hwblue-700 uppercase mb-1">Configuration Fee</p>
@@ -254,10 +301,11 @@
                         <a href="#contact" class="block w-full py-4 rounded-2xl font-bold bg-slate-900 text-white hover:bg-slate-800 transition">Get Started</a>
                     </div>
 
-                    <div class="p-10 border-2 border-hwblue-500 rounded-[2.5rem] bg-white shadow-2xl relative">
-                        <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-hwblue-500 text-white px-5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg">Professional Choice</div>
+                    <!-- Professional Choice -->
+                    <div class="p-8 sm:p-10 border-2 border-hwblue-500 rounded-[2.5rem] bg-white shadow-2xl relative order-first md:order-none">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-hwblue-500 text-white px-5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg w-max">Professional Choice</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2">Business Growth</h3>
-                        <div class="text-5xl font-extrabold text-slate-900 mb-4">$299<span class="text-sm text-slate-400 font-medium">/mo</span></div>
+                        <div class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4">$299<span class="text-sm text-slate-400 font-medium">/mo</span></div>
                         <p class="text-slate-500 text-sm mb-8">Scale your inbound operations.</p>
                         <div class="mb-8 p-4 bg-slate-50 rounded-2xl border border-slate-100">
                             <p class="text-xs font-bold text-slate-700 uppercase mb-1 text-center">Implementation Fee</p>
@@ -268,19 +316,18 @@
                             <li class="flex items-center font-bold text-slate-900"><i class="fa-solid fa-circle-check text-hwblue-500 mr-3"></i> 300 Included Minutes</li>
                             <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwblue-500 mr-3"></i> $0.60/min Talk Time Overage</li>
                             <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwblue-500 mr-3"></i> Deep CRM/PMS Integration</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwblue-500 mr-3"></i> Multilingual Support Logic</li>
                         </ul>
                         <a href="#contact" class="block w-full py-4 rounded-2xl font-bold bg-hwblue-600 text-white hover:bg-hwblue-700 transition shadow-lg shadow-hwblue-600/30">Select Partnership</a>
                     </div>
 
-                    <div class="p-10 border border-slate-200 rounded-[2.5rem] bg-slate-50/50 hover:bg-white transition-colors text-center">
+                    <!-- Enterprise -->
+                    <div class="p-8 sm:p-10 border border-slate-200 rounded-[2.5rem] bg-slate-50/50 hover:bg-white transition-colors text-center">
                         <h3 class="text-lg font-bold text-slate-900 mb-2">Enterprise</h3>
-                        <div class="text-5xl font-extrabold text-slate-900 mb-4">Custom</div>
+                        <div class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4">Custom</div>
                         <p class="text-slate-500 text-sm mb-8">Multi-unit & Franchise Groups.</p>
                         <div class="mb-8 p-4 bg-slate-50 rounded-2xl border border-slate-100">
                             <p class="text-xs font-bold text-slate-700 uppercase mb-1 text-center">Project Fee</p>
                             <span class="text-slate-900 font-bold text-lg text-center block">Volume Based</span>
-                            <p class="text-[10px] text-slate-400 mt-1 text-center">Dedicated Systems Architect</p>
                         </div>
                         <ul class="text-left space-y-4 mb-10 text-sm text-slate-600">
                             <li class="flex items-center"><i class="fa-solid fa-circle-check text-hwblue-500 mr-3"></i> Wholesale Minute Bundles</li>
@@ -293,30 +340,33 @@
             </div>
         </section>
 
-        <section id="contact" class="py-24 bg-gradient-to-br from-hwblue-50 to-white">
-            <div class="max-w-4xl mx-auto px-6 text-center rounded-[3rem] bg-white shadow-2xl border border-slate-100 p-16">
-                <h2 class="text-4xl font-extrabold text-slate-900 mb-8">Recover Your Lost Revenue Today</h2>
-                <p class="text-xl text-slate-600 mb-12">
-                    Let us demonstrate how a custom AI voice agent sounds handling your specific business calls. Schedule your strategy session today to secure your operational advantage.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="mailto:consulting@healthyworkforces.com" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-10 py-5 rounded-2xl font-bold text-lg transition shadow-xl shadow-hwblue-600/30">
-                        Book Strategy Session
-                    </a>
-                    <a href="tel:+12812232760" class="bg-white hover:bg-slate-50 text-slate-700 px-10 py-5 rounded-2xl font-bold text-lg border-2 border-slate-200 transition flex items-center justify-center gap-3">
-                        <i class="fa-solid fa-phone"></i> (281) 223-2760
-                    </a>
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 sm:py-24 bg-gradient-to-br from-hwblue-50 to-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6">
+                <div class="rounded-[2.5rem] sm:rounded-[3rem] bg-white shadow-2xl border border-slate-100 p-8 sm:p-16 text-center">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 sm:mb-8">Recover Your Lost Revenue Today</h2>
+                    <p class="text-lg sm:text-xl text-slate-600 mb-8 sm:mb-12">
+                        Let us demonstrate how a custom AI voice agent sounds handling your specific business calls. Schedule your strategy session today.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="mailto:consulting@healthyworkforces.com" class="bg-hwblue-600 hover:bg-hwblue-700 text-white px-8 py-4 sm:px-10 sm:py-5 rounded-2xl font-bold text-lg transition shadow-xl shadow-hwblue-600/30 w-full sm:w-auto">
+                            Book Strategy Session
+                        </a>
+                        <a href="tel:+12812232760" class="bg-white hover:bg-slate-50 text-slate-700 px-8 py-4 sm:px-10 sm:py-5 rounded-2xl font-bold text-lg border-2 border-slate-200 transition flex items-center justify-center gap-3 w-full sm:w-auto">
+                            <i class="fa-solid fa-phone"></i> (281) 223-2760
+                        </a>
+                    </div>
+                    <p class="text-slate-400 mt-8 text-xs sm:text-sm italic">
+                        <i class="fa-solid fa-shield-halved mr-2"></i> Only 2 pilot slots remaining for current configuration discounts.
+                    </p>
                 </div>
-                <p class="text-slate-400 mt-8 text-sm italic">
-                    <i class="fa-solid fa-shield-halved mr-2"></i> Only 2 pilot slots remaining for current configuration discounts.
-                </p>
             </div>
         </section>
     </main>
 
-    <footer class="bg-slate-900 pt-20 pb-10 text-slate-500 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-16 mb-16 text-left">
-            <div class="col-span-2">
+    <footer class="bg-slate-900 pt-16 sm:pt-20 pb-10 text-slate-500 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16 text-left">
+            <div class="md:col-span-2 col-span-4">
                 <div class="flex items-center mb-6">
                     <div class="w-8 h-8 bg-gradient-to-br from-hwblue-600 to-hwteal-500 rounded-lg flex items-center justify-center text-white text-sm mr-3">
                         <i class="fa-solid fa-heart-pulse"></i>
@@ -331,7 +381,7 @@
                     <p><i class="fa-solid fa-phone mr-3 text-hwblue-500"></i> (281) 223-2760</p>
                 </div>
             </div>
-            <div>
+            <div class="col-span-2 md:col-span-1">
                 <h4 class="font-bold text-white mb-6 uppercase tracking-widest text-[10px]">Operations</h4>
                 <ul class="space-y-4 text-sm">
                     <li><a href="#approach" onclick="navigateTo('home', 'approach')" class="hover:text-hwblue-500 transition">Operational Audits</a></li>
@@ -339,7 +389,7 @@
                     <li><a href="#pricing" onclick="navigateTo('home', 'pricing')" class="hover:text-hwblue-500 transition">Partner ROI</a></li>
                 </ul>
             </div>
-            <div>
+            <div class="col-span-2 md:col-span-1">
                 <h4 class="font-bold text-white mb-6 uppercase tracking-widest text-[10px]">Information</h4>
                 <ul class="space-y-4 text-sm text-xs">
                     <li>Privacy Policy</li>
@@ -347,23 +397,55 @@
                 </ul>
             </div>
         </div>
-        <div class="border-t border-slate-800 pt-10 text-center text-[10px]">
+        <div class="border-t border-slate-800 pt-10 px-6 text-center text-[10px]">
             <p>&copy; 2025 Snooze Theory LLC. All rights reserved. Proprietary Neural Voice Models and SIP Architecture.</p>
         </div>
     </footer>
 
     <script>
+        // Toggle Mobile Menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        function toggleMobileMenu() {
+            menu.classList.toggle('open');
+            if (menu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        btn.addEventListener('click', toggleMobileMenu);
+
+        // Smooth Navigation
         function navigateTo(page, sectionId = null) {
             const homeView = document.getElementById('view-home');
+            
             if (page === 'home') {
                 homeView.classList.remove('hidden');
+                
                 if (sectionId) {
+                    // Small delay to allow menu to close if it was open
                     setTimeout(() => {
                         const el = document.getElementById(sectionId);
-                        if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }, 50);
+                        if (el) {
+                            // Account for fixed header height
+                            const headerOffset = 80;
+                            const elementPosition = el.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+                        }
+                    }, 100);
                 } else {
-                    window.scrollTo(0, 0);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             } 
         }
