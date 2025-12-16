@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +32,8 @@
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
+        html, body { overflow-x: hidden; width: 100%; position: relative; }
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
         
         /* Pill Nav Styles */
         .glass-pill { 
@@ -115,8 +116,20 @@
         
         /* Mobile Menu Transitions */
         #mobile-menu {
-            transition: all 0.3s ease-in-out;
+            transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
             transform-origin: top center;
+        }
+        .menu-closed {
+            max-height: 0;
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+        .menu-open {
+            max-height: 500px; /* Arbitrary large height */
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
         }
     </style>
 </head>
@@ -149,12 +162,12 @@
 
             <!-- Mobile Hamburger Button -->
             <button onclick="toggleMobileMenu()" class="md:hidden text-white hover:text-hwblue-400 focus:outline-none px-2">
-                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                <i class="fa-solid fa-bars text-xl transition-all duration-300" id="menu-icon"></i>
             </button>
         </nav>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden w-full max-w-sm mt-2 origin-top transform transition-all duration-300 z-40">
+        <div id="mobile-menu" class="menu-closed w-full max-w-sm mt-2 overflow-hidden z-40">
             <div class="glass-pill rounded-2xl p-4 flex flex-col gap-2">
                 <a href="#specializations" onclick="toggleMobileMenu()" class="block px-4 py-3 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-colors font-medium text-center">Our Focus</a>
                 <a href="#demos" onclick="toggleMobileMenu()" class="block px-4 py-3 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-colors font-medium text-center">Live Demos</a>
@@ -281,8 +294,9 @@
                         <div class="relative bg-slate-800 rounded-[2rem] md:rounded-[2.5rem] border border-slate-700 shadow-xl overflow-hidden z-10">
                             <div class="p-4 md:p-6 border-b border-slate-700 flex items-center justify-between bg-slate-900/50">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 md:w-10 md:h-10 bg-hwblue-600 rounded-xl flex items-center justify-center text-white">
-                                        <i class="fa-solid fa-scissors text-sm md:text-base"></i>
+                                    <!-- Updated Icon Style (Rose/Salons) -->
+                                    <div class="w-10 h-10 md:w-12 md:h-12 bg-rose-500/20 rounded-xl flex items-center justify-center text-rose-400">
+                                        <i class="fa-solid fa-scissors text-lg md:text-xl"></i>
                                     </div>
                                     <div>
                                         <h4 class="font-bold text-white leading-none text-sm md:text-base">Barber Shop Agent</h4>
@@ -311,8 +325,9 @@
                         <div class="relative bg-slate-800 rounded-[2rem] md:rounded-[2.5rem] border border-slate-700 shadow-xl overflow-hidden z-10">
                             <div class="p-4 md:p-6 border-b border-slate-700 flex items-center justify-between bg-slate-900/50">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 md:w-10 md:h-10 bg-hwteal-500 rounded-xl flex items-center justify-center text-white">
-                                        <i class="fa-solid fa-stethoscope text-sm md:text-base"></i>
+                                    <!-- Updated Icon Style (Teal/Medical) -->
+                                    <div class="w-10 h-10 md:w-12 md:h-12 bg-hwteal-500/20 rounded-xl flex items-center justify-center text-hwteal-400">
+                                        <i class="fa-solid fa-heart-pulse text-lg md:text-xl"></i>
                                     </div>
                                     <div>
                                         <h4 class="font-bold text-white leading-none text-sm md:text-base">Medical Clinic Agent</h4>
@@ -702,12 +717,14 @@
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
             
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
+            if (menu.classList.contains('menu-closed')) {
+                menu.classList.remove('menu-closed');
+                menu.classList.add('menu-open');
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-xmark');
             } else {
-                menu.classList.add('hidden');
+                menu.classList.remove('menu-open');
+                menu.classList.add('menu-closed');
                 icon.classList.remove('fa-xmark');
                 icon.classList.add('fa-bars');
             }
