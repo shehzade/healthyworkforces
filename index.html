@@ -115,6 +115,21 @@
         .prose p, .prose ul { color: #94a3b8; margin-bottom: 1em; line-height: 1.6; }
         .prose ul { list-style-type: disc; padding-left: 1.5em; }
         
+        /* FAQ Styles */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Adjust if content is very long */
+            opacity: 1;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
         /* Mobile Menu Transitions */
         #mobile-menu {
             transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -138,17 +153,13 @@
 
     <div id="particles-js"></div>
 
-    <!-- Responsive Navbar -->
     <div class="fixed top-4 sm:top-6 left-0 right-0 z-50 flex flex-col items-center px-4">
-        <!-- Main Pill -->
         <nav class="glass-pill rounded-full px-4 py-3 sm:px-4 sm:py-2.5 flex items-center justify-between w-full max-w-4xl relative z-50">
-            <!-- Logo -->
             <a href="#" class="flex items-center gap-2 font-bold text-white hover:text-hwblue-400 transition-colors px-1">
                 <i class="fa-solid fa-wave-square text-hwblue-500"></i>
                 <span>HW<span class="text-hwblue-500">.ai</span></span>
             </a>
             
-            <!-- Desktop Menu (Hidden on Mobile) -->
             <div class="nav-sub-pill hidden md:flex">
                 <a href="#specializations" class="nav-link">Our Focus</a>
                 <a href="#demos" class="nav-link">Live Demos</a>
@@ -156,18 +167,15 @@
                 <a href="#pricing" class="nav-link">Partnership</a>
             </div>
             
-            <!-- Desktop CTA (Hidden on Mobile) -->
             <button onclick="document.getElementById('contact-modal').classList.remove('hidden')" class="hidden md:block ml-2 bg-gradient-to-r from-hwblue-500 to-hwteal-500 hover:from-hwblue-400 hover:to-hwteal-400 text-white px-5 py-2 rounded-full text-xs font-bold transition-all shadow-lg shadow-hwblue-500/20 whitespace-nowrap">
                 Book Strategy Session
             </button>
 
-            <!-- Mobile Hamburger Button -->
             <button onclick="toggleMobileMenu()" class="md:hidden text-white hover:text-hwblue-400 focus:outline-none px-2">
                 <i class="fa-solid fa-bars text-xl transition-all duration-300" id="menu-icon"></i>
             </button>
         </nav>
 
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="menu-closed w-full max-w-sm mt-2 overflow-hidden z-40">
             <div class="glass-pill rounded-2xl p-4 flex flex-col gap-2">
                 <a href="#specializations" onclick="toggleMobileMenu()" class="block px-4 py-3 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-colors font-medium text-center">Our Focus</a>
@@ -184,7 +192,6 @@
 
     <main class="pt-24">
         
-        <!-- Hero Section -->
         <section class="relative pt-16 md:pt-20 pb-20 md:pb-32 min-h-[85vh] flex items-center justify-center text-center px-4">
             <div class="hero-glow"></div>
             <div class="max-w-5xl mx-auto z-10">
@@ -213,7 +220,6 @@
             </div>
         </section>
 
-        <!-- Core Specializations -->
         <section id="specializations" class="py-16 md:py-24 bg-slate-900/50 relative z-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12 md:mb-16">
@@ -222,7 +228,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Home Services -->
                     <div class="glass-card p-6 rounded-2xl group">
                         <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4 text-orange-400 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-hammer text-xl"></i>
@@ -231,7 +236,6 @@
                         <p class="text-slate-400 text-sm">HVAC | Plumbing | Electric. Our agents handle emergency dispatch and quote intake while your technicians are focused on the job site.</p>
                     </div>
 
-                    <!-- Medical & Dental (Combined) -->
                     <div class="glass-card p-6 rounded-2xl group">
                         <div class="w-12 h-12 bg-hwteal-500/20 rounded-lg flex items-center justify-center mb-4 text-hwteal-400 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-heart-pulse text-xl"></i>
@@ -240,7 +244,6 @@
                         <p class="text-slate-400 text-sm">Clinics | Ortho | Specialists. HIPAA-compliant routing, patient intake, and prescription refill request handling.</p>
                     </div>
 
-                    <!-- Law Firms -->
                     <div class="glass-card p-6 rounded-2xl group">
                         <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 text-purple-400 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-scale-balanced text-xl"></i>
@@ -249,7 +252,6 @@
                         <p class="text-slate-400 text-sm">Personal Injury | Intake. Ensure every potential case is captured and qualified instantly before the lead calls another firm.</p>
                     </div>
 
-                    <!-- Salons & Barbers (New) -->
                     <div class="glass-card p-6 rounded-2xl group">
                         <div class="w-12 h-12 bg-rose-500/20 rounded-lg flex items-center justify-center mb-4 text-rose-400 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-scissors text-xl"></i>
@@ -258,7 +260,6 @@
                         <p class="text-slate-400 text-sm">Automated booking and cancellation management. Let your staff focus on the client in the chair, not the phone.</p>
                     </div>
 
-                    <!-- Real Estate -->
                     <div class="glass-card p-6 rounded-2xl group">
                         <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4 text-green-400 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-house-chimney text-xl"></i>
@@ -267,7 +268,6 @@
                         <p class="text-slate-400 text-sm">Instant lead response for Zillow/Realtor.com leads. Sets showings and qualifies buyers.</p>
                     </div>
 
-                    <!-- Hospitality -->
                     <div class="glass-card p-6 rounded-2xl group">
                         <div class="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center mb-4 text-pink-400 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-utensils text-xl"></i>
@@ -279,7 +279,6 @@
             </div>
         </section>
 
-        <!-- Labs / Vapi Demo Section -->
         <section id="demos" class="py-16 md:py-24 relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
                 <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
@@ -289,13 +288,11 @@
                 </div>
 
                 <div class="grid lg:grid-cols-2 gap-8 items-start">
-                    <!-- Barber Agent Card -->
                     <div class="group relative">
                         <div class="absolute -inset-0.5 bg-gradient-to-r from-hwblue-500 to-hwteal-500 rounded-[2.5rem] blur opacity-10 group-hover:opacity-25 transition duration-500"></div>
                         <div class="relative bg-slate-800 rounded-[2rem] md:rounded-[2.5rem] border border-slate-700 shadow-xl overflow-hidden z-10">
                             <div class="p-4 md:p-6 border-b border-slate-700 flex items-center justify-between bg-slate-900/50">
                                 <div class="flex items-center gap-3">
-                                    <!-- Updated Icon Style (Rose/Salons) -->
                                     <div class="w-10 h-10 md:w-12 md:h-12 bg-rose-500/20 rounded-xl flex items-center justify-center text-rose-400">
                                         <i class="fa-solid fa-scissors text-lg md:text-xl"></i>
                                     </div>
@@ -320,13 +317,11 @@
                         </div>
                     </div>
 
-                    <!-- Medical Agent Card -->
                     <div class="group relative">
                         <div class="absolute -inset-0.5 bg-gradient-to-r from-hwblue-500 to-hwteal-500 rounded-[2.5rem] blur opacity-10 group-hover:opacity-25 transition duration-500"></div>
                         <div class="relative bg-slate-800 rounded-[2rem] md:rounded-[2.5rem] border border-slate-700 shadow-xl overflow-hidden z-10">
                             <div class="p-4 md:p-6 border-b border-slate-700 flex items-center justify-between bg-slate-900/50">
                                 <div class="flex items-center gap-3">
-                                    <!-- Updated Icon Style (Teal/Medical) -->
                                     <div class="w-10 h-10 md:w-12 md:h-12 bg-hwteal-500/20 rounded-xl flex items-center justify-center text-hwteal-400">
                                         <i class="fa-solid fa-heart-pulse text-lg md:text-xl"></i>
                                     </div>
@@ -357,7 +352,6 @@
             </div>
         </section>
 
-        <!-- Engineering Method Section -->
         <section id="method" class="py-16 md:py-24 bg-slate-900 relative">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/80 pointer-events-none"></div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -368,10 +362,8 @@
                 </div>
 
                 <div class="space-y-16 md:space-y-24">
-                    <!-- Step 1 -->
                     <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                         <div class="order-2 md:order-1 relative pl-4 md:pl-0">
-                            <!-- Increased opacity to 50 for visibility -->
                             <div class="absolute -left-2 md:-left-8 -top-8 text-7xl md:text-9xl font-black step-number opacity-50 select-none">1</div>
                             <h3 class="text-xl md:text-2xl font-bold text-white mb-4 relative z-10">On-Site Operational Study</h3>
                             <p class="text-slate-400 mb-6 relative z-10 text-sm md:text-base">We begin by analyzing your office workflows. We study how your staff handles calls and identify exactly where revenue is being lost. By understanding your unique tone and business logic, we create a blueprint that mimics your top-performing employee.</p>
@@ -389,7 +381,6 @@
                         </div>
                     </div>
 
-                    <!-- Step 2 -->
                     <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                         <div class="flex justify-center">
                             <div class="w-full max-w-sm aspect-square bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl border border-slate-700 p-8 flex flex-col justify-center items-center relative overflow-hidden">
@@ -400,7 +391,6 @@
                             </div>
                         </div>
                         <div class="relative pl-4 md:pl-0">
-                            <!-- Increased opacity to 50 for visibility -->
                             <div class="absolute -right-2 md:-right-8 -top-8 text-7xl md:text-9xl font-black step-number opacity-50 select-none">2</div>
                             <h3 class="text-xl md:text-2xl font-bold text-white mb-4 relative z-10">Deep Software Integration</h3>
                             <p class="text-slate-400 mb-6 relative z-10 text-sm md:text-base">Intelligence is useless without the ability to act. Our engineers build custom integrations into your CRM, PMS, or local databases. Your agent reads live availability and writes new appointments directly into your calendar.</p>
@@ -410,10 +400,8 @@
                         </div>
                     </div>
 
-                    <!-- Step 3 -->
                     <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                         <div class="order-2 md:order-1 relative pl-4 md:pl-0">
-                            <!-- Increased opacity to 50 for visibility -->
                             <div class="absolute -left-2 md:-left-8 -top-8 text-7xl md:text-9xl font-black step-number opacity-50 select-none">3</div>
                             <h3 class="text-xl md:text-2xl font-bold text-white mb-4 relative z-10">Neural Voice Synthesis</h3>
                             <p class="text-slate-400 mb-6 relative z-10 text-sm md:text-base">We deploy high-fidelity voice models that sound indistinguishable from a professional receptionist. Our low-latency network architecture ensures zero-delay conversations.</p>
@@ -434,7 +422,6 @@
             </div>
         </section>
 
-        <!-- Pricing Section -->
         <section id="pricing" class="py-16 md:py-24 bg-slate-900/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12 md:mb-16">
@@ -443,7 +430,6 @@
                 </div>
 
                 <div class="flex flex-wrap justify-center gap-6">
-                    <!-- Pilot -->
                     <div class="glass-card p-6 rounded-2xl border border-slate-700 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] xl:w-[calc(20%-20px)] flex flex-col hover:border-hwblue-500/50 relative group">
                         <div class="mb-4">
                             <h3 class="text-lg font-bold text-white mb-1">Pilot</h3>
@@ -454,14 +440,15 @@
                         </div>
                         <ul class="space-y-3 mb-8 flex-grow">
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-bolt text-hwblue-500 mr-2 w-4"></i> 6 Concurrent Lines</li>
+                            <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-robot text-hwblue-500 mr-2 w-4"></i> 1 Neural Agent</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-regular fa-clock text-hwblue-500 mr-2 w-4"></i> 40 Included Mins</li>
-                            <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-stopwatch text-hwblue-500 mr-2 w-4"></i> $0.75 /min overage</li>
+                            <li class="flex items-center text-sm text-slate-500"><i class="fa-solid fa-ban text-slate-600 mr-2 w-4"></i> No Overage Allowed</li>
+                            <li class="flex items-center text-sm text-slate-500"><i class="fa-solid fa-ban text-slate-600 mr-2 w-4"></i> No CRM Integration</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-wrench text-hwblue-500 mr-2 w-4"></i> $500 Setup Fee</li>
                         </ul>
                         <button onclick="document.getElementById('contact-modal').classList.remove('hidden')" class="w-full py-2 border border-hwblue-500/30 hover:bg-hwblue-500/10 text-hwblue-400 rounded-lg font-semibold transition-all text-sm">Select Pilot</button>
                     </div>
 
-                    <!-- Growth -->
                     <div class="glass-card p-6 rounded-2xl border border-slate-700 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] xl:w-[calc(20%-20px)] flex flex-col hover:border-hwblue-500/50 relative group">
                         <div class="mb-4">
                             <h3 class="text-lg font-bold text-white mb-1">Growth</h3>
@@ -472,14 +459,15 @@
                         </div>
                         <ul class="space-y-3 mb-8 flex-grow">
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-bolt text-hwblue-500 mr-2 w-4"></i> 10 Concurrent Lines</li>
+                            <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-robot text-hwblue-500 mr-2 w-4"></i> 2 Neural Agents</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-regular fa-clock text-hwblue-500 mr-2 w-4"></i> 200 Included Mins</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-stopwatch text-hwblue-500 mr-2 w-4"></i> $0.60 /min overage</li>
+                            <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-link text-hwblue-500 mr-2 w-4"></i> CRM & Calendar Sync</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-wrench text-hwblue-500 mr-2 w-4"></i> $1,500 Setup Fee</li>
                         </ul>
                         <button onclick="document.getElementById('contact-modal').classList.remove('hidden')" class="w-full py-2 border border-hwblue-500/30 hover:bg-hwblue-500/10 text-hwblue-400 rounded-lg font-semibold transition-all text-sm">Select Growth</button>
                     </div>
 
-                    <!-- Pro -->
                     <div class="glass-card p-6 rounded-2xl border-2 border-hwblue-500 bg-slate-800/80 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] xl:w-[calc(20%-20px)] flex flex-col shadow-lg shadow-hwblue-500/20 transform scale-105 z-10">
                         <div class="absolute top-0 right-0 bg-hwblue-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</div>
                         <div class="mb-4">
@@ -491,14 +479,15 @@
                         </div>
                         <ul class="space-y-3 mb-8 flex-grow">
                             <li class="flex items-center text-sm text-white font-medium"><i class="fa-solid fa-bolt text-hwteal-400 mr-2 w-4"></i> 20 Concurrent Lines</li>
+                            <li class="flex items-center text-sm text-white font-medium"><i class="fa-solid fa-robot text-hwteal-400 mr-2 w-4"></i> 5 Neural Agents</li>
                             <li class="flex items-center text-sm text-white font-medium"><i class="fa-regular fa-clock text-hwteal-400 mr-2 w-4"></i> 900 Included Mins</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-stopwatch text-hwteal-400 mr-2 w-4"></i> $0.50 /min overage</li>
+                            <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-link text-hwteal-400 mr-2 w-4"></i> CRM & Calendar Sync</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-wrench text-hwteal-400 mr-2 w-4"></i> $2,500 Setup Fee</li>
                         </ul>
                         <button onclick="document.getElementById('contact-modal').classList.remove('hidden')" class="w-full py-2 bg-hwblue-500 hover:bg-hwblue-600 text-white rounded-lg font-semibold transition-all shadow-lg text-sm">Select Pro</button>
                     </div>
 
-                    <!-- Scale -->
                     <div class="glass-card p-6 rounded-2xl border border-slate-700 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] xl:w-[calc(20%-20px)] flex flex-col hover:border-hwblue-500/50 relative group">
                         <div class="mb-4">
                             <h3 class="text-lg font-bold text-white mb-1">Scale</h3>
@@ -509,14 +498,15 @@
                         </div>
                         <ul class="space-y-3 mb-8 flex-grow">
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-bolt text-hwblue-500 mr-2 w-4"></i> 30 Concurrent Lines</li>
+                            <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-robot text-hwblue-500 mr-2 w-4"></i> 10 Neural Agents</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-regular fa-clock text-hwblue-500 mr-2 w-4"></i> 3,200 Included Mins</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-stopwatch text-hwblue-500 mr-2 w-4"></i> $0.45 /min overage</li>
+                            <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-link text-hwblue-500 mr-2 w-4"></i> Deep CRM Integration</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-wrench text-hwblue-500 mr-2 w-4"></i> $4,000 Setup Fee</li>
                         </ul>
                         <button onclick="document.getElementById('contact-modal').classList.remove('hidden')" class="w-full py-2 border border-hwblue-500/30 hover:bg-hwblue-500/10 text-hwblue-400 rounded-lg font-semibold transition-all text-sm">Select Scale</button>
                     </div>
 
-                    <!-- Enterprise -->
                     <div class="glass-card p-6 rounded-2xl border border-slate-700 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] xl:w-[calc(20%-20px)] flex flex-col hover:border-purple-500/50 relative group">
                         <div class="mb-4">
                             <h3 class="text-lg font-bold text-purple-400 mb-1">Enterprise</h3>
@@ -526,9 +516,11 @@
                             </div>
                         </div>
                         <ul class="space-y-3 mb-8 flex-grow">
-                            <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-bolt text-purple-500 mr-2 w-4"></i> 30+ Concurrent Lines</li>
+                            <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-bolt text-purple-500 mr-2 w-4"></i> 30 Concurrent Lines</li>
+                            <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-robot text-purple-500 mr-2 w-4"></i> Unlimited Agents</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-regular fa-clock text-purple-500 mr-2 w-4"></i> 12,500 Included Mins</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-stopwatch text-purple-500 mr-2 w-4"></i> $0.35 /min overage</li>
+                            <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-link text-purple-500 mr-2 w-4"></i> Custom ERP Integration</li>
                             <li class="flex items-center text-sm text-slate-300"><i class="fa-solid fa-wrench text-purple-500 mr-2 w-4"></i> Custom Setup</li>
                         </ul>
                         <button onclick="document.getElementById('contact-modal').classList.remove('hidden')" class="w-full py-2 border border-purple-500/30 hover:bg-purple-500/10 text-purple-400 rounded-lg font-semibold transition-all text-sm">Contact Us</button>
@@ -537,7 +529,101 @@
             </div>
         </section>
 
-        <!-- CTA Section -->
+        <section class="py-16 bg-slate-900/50 relative">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Frequently Asked Questions</h2>
+                    <p class="text-slate-400 text-sm">Everything you need to know about our technology and process.</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="faq-item glass-card rounded-2xl overflow-hidden cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-white">What happens if I go over my included minutes?</h3>
+                            <i class="fa-solid fa-chevron-down text-hwblue-500 transition-transform duration-300 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer px-6 pb-0 text-slate-300 text-sm leading-relaxed">
+                            <div class="pb-6">
+                                It depends on your plan. For <strong>Growth, Pro, and Scale</strong> partners, your agent stays online 24/7, and we simply bill the small overage rate per minute at the end of the month. For <strong>Pilot</strong> partners, the agent will stop answering calls once the limit is reached to protect you from unexpected costs.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl overflow-hidden cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-white">Does the AI sound like a robot?</h3>
+                            <i class="fa-solid fa-chevron-down text-hwblue-500 transition-transform duration-300 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer px-6 pb-0 text-slate-300 text-sm leading-relaxed">
+                            <div class="pb-6">
+                                Not at all. We utilize "Neural Voice Synthesis" which accounts for pauses, intonation, and pacing. Most callers cannot distinguish our agents from a human receptionist. We encourage you to try the <strong>Live Demos</strong> above to hear the quality for yourself.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl overflow-hidden cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-white">How does the AI integrate with my existing software?</h3>
+                            <i class="fa-solid fa-chevron-down text-hwblue-500 transition-transform duration-300 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer px-6 pb-0 text-slate-300 text-sm leading-relaxed">
+                            <div class="pb-6">
+                                For <strong>Growth plans and above</strong>, we integrate directly with your core business systems. This goes beyond just scheduling; we can connect to your database to look up order statuses (e.g., checking a vehicle repair status), update customer records, or sync with your specific industry software. The agent acts as a true extension of your digital tools. <em>(Note: The Pilot plan does not include API integrations).</em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl overflow-hidden cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-white">What if the AI doesn't know the answer?</h3>
+                            <i class="fa-solid fa-chevron-down text-hwblue-500 transition-transform duration-300 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer px-6 pb-0 text-slate-300 text-sm leading-relaxed">
+                            <div class="pb-6">
+                                We program your specific business rules during setup. If a caller asks something outside that scope, the agent is trained to politely take a message or <strong>transfer the call directly to a live staff member</strong>. We ensure the caller is never left at a dead end.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl overflow-hidden cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-white">How do you prevent spam calls or abuse from driving up my bill?</h3>
+                            <i class="fa-solid fa-chevron-down text-hwblue-500 transition-transform duration-300 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer px-6 pb-0 text-slate-300 text-sm leading-relaxed">
+                            <div class="pb-6">
+                                We build in specific guardrails to protect your wallet. If the agent detects a caller is going in circles, being abusive, or not engaging in a business-related query, it will terminate the conversation, take a message, or transfer to a human after a set number of turns. You only pay for productive interactions.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl overflow-hidden cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-white">Is this compliant for medical practices (HIPAA)?</h3>
+                            <i class="fa-solid fa-chevron-down text-hwblue-500 transition-transform duration-300 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer px-6 pb-0 text-slate-300 text-sm leading-relaxed">
+                            <div class="pb-6">
+                                Yes. We offer fully HIPAA-compliant configurations for our Medical and Dental clients on the <strong>Pro</strong> and <strong>Enterprise</strong> tiers. We sign a Business Associate Agreement (BAA) and ensure all voice data is encrypted and handled according to strict privacy standards.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl overflow-hidden cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-white">How long does setup take?</h3>
+                            <i class="fa-solid fa-chevron-down text-hwblue-500 transition-transform duration-300 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer px-6 pb-0 text-slate-300 text-sm leading-relaxed">
+                            <div class="pb-6">
+                                Because we engineer custom agents rather than using a generic "template," setup typically takes 3-5 business days. This includes our operational study of your current phone workflow, prompt engineering, and rigorous testing before we go live.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="py-16 md:py-24 relative overflow-hidden bg-gradient-to-br from-hwblue-900/50 to-slate-900">
             <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
                 <h2 class="text-xs md:text-sm font-bold text-hwblue-400 uppercase tracking-widest mb-4">Contact Architect</h2>
@@ -547,13 +633,11 @@
                     <button onclick="document.getElementById('contact-modal').classList.remove('hidden')" class="w-full sm:w-auto px-8 py-4 bg-white text-hwblue-900 hover:bg-slate-100 rounded-xl font-bold text-lg shadow-xl transition-transform transform hover:-translate-y-1">
                         Book Strategy Session
                     </button>
-                    <!-- Phone number link removed as requested -->
-                </div>
+                    </div>
                 <p class="mt-6 text-xs md:text-sm text-slate-500">Only 2 pilot slots remaining for current configuration discounts.</p>
             </div>
         </section>
 
-        <!-- Footer -->
         <footer class="bg-slate-900 border-t border-slate-800 pt-12 md:pt-16 pb-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12">
@@ -569,8 +653,8 @@
                              <a href="mailto:support@healthyworkforces.com" class="block text-slate-400 hover:text-white transition-colors">
                                 <i class="fa-solid fa-envelope w-5"></i> support@healthyworkforces.com
                             </a>
-                            <a href="tel:2812232760" class="block text-slate-400 hover:text-white transition-colors">
-                                <i class="fa-solid fa-phone w-5"></i> (281) 223-2760
+                            <a href="tel:8329301979" class="block text-slate-400 hover:text-white transition-colors">
+                                <i class="fa-solid fa-phone w-5"></i> (832) 930-1979
                             </a>
                         </div>
                     </div>
@@ -600,13 +684,11 @@
         </footer>
     </main>
 
-    <!-- Contact Modal -->
     <div id="contact-modal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm transition-opacity" onclick="document.getElementById('contact-modal').classList.add('hidden')"></div>
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full items-center justify-center p-4">
                 <div class="relative transform overflow-hidden rounded-2xl bg-slate-800 text-left shadow-xl transition-all w-full max-w-lg border border-slate-700 p-8 text-center">
-                    <!-- Added Close X Button -->
                     <button onclick="document.getElementById('contact-modal').classList.add('hidden')" class="absolute top-4 right-4 text-slate-400 hover:text-white focus:outline-none">
                         <i class="fa-solid fa-xmark text-xl"></i>
                     </button>
@@ -619,9 +701,9 @@
                             <i class="fa-solid fa-envelope text-hwblue-400"></i>
                             consulting@healthyworkforces.com
                         </a>
-                        <a href="tel:+12812232760" class="flex items-center justify-center gap-3 w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 rounded-xl transition-colors border border-slate-600">
+                        <a href="tel:+18329301979" class="flex items-center justify-center gap-3 w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 rounded-xl transition-colors border border-slate-600">
                             <i class="fa-solid fa-phone text-hwteal-400"></i>
-                            (281) 223-2760
+                            (832) 930-1979
                         </a>
                     </div>
                 </div>
@@ -629,7 +711,6 @@
         </div>
     </div>
 
-    <!-- Privacy Policy Modal -->
     <div id="privacy-modal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-slate-900/95 backdrop-blur-sm transition-opacity" onclick="document.getElementById('privacy-modal').classList.add('hidden')"></div>
         <div class="fixed inset-0 z-10 overflow-y-auto">
@@ -669,7 +750,6 @@
         </div>
     </div>
 
-    <!-- Terms of Service Modal -->
     <div id="terms-modal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-slate-900/95 backdrop-blur-sm transition-opacity" onclick="document.getElementById('terms-modal').classList.add('hidden')"></div>
         <div class="fixed inset-0 z-10 overflow-y-auto">
@@ -728,6 +808,21 @@
                 menu.classList.add('menu-closed');
                 icon.classList.remove('fa-xmark');
                 icon.classList.add('fa-bars');
+            }
+        }
+
+        // Simple FAQ Toggle Function
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Toggle current one
+            if (!isActive) {
+                element.classList.add('active');
             }
         }
 
