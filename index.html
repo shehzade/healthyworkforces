@@ -165,6 +165,7 @@
                 <a href="#demos" class="nav-link">Live Demos</a>
                 <a href="#method" class="nav-link">Method</a>
                 <a href="#pricing" class="nav-link">Partnership</a>
+                <a href="#faq" class="nav-link">FAQ</a>
             </div>
             
             <button onclick="document.getElementById('contact-modal').classList.remove('hidden')" class="hidden md:block ml-2 bg-gradient-to-r from-hwblue-500 to-hwteal-500 hover:from-hwblue-400 hover:to-hwteal-400 text-white px-5 py-2 rounded-full text-xs font-bold transition-all shadow-lg shadow-hwblue-500/20 whitespace-nowrap">
@@ -182,6 +183,7 @@
                 <a href="#demos" onclick="toggleMobileMenu()" class="block px-4 py-3 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-colors font-medium text-center">Live Demos</a>
                 <a href="#method" onclick="toggleMobileMenu()" class="block px-4 py-3 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-colors font-medium text-center">Method</a>
                 <a href="#pricing" onclick="toggleMobileMenu()" class="block px-4 py-3 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-colors font-medium text-center">Partnership</a>
+                <a href="#faq" onclick="toggleMobileMenu()" class="block px-4 py-3 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-colors font-medium text-center">FAQ</a>
                 <div class="h-px bg-white/10 my-2"></div>
                 <button onclick="toggleMobileMenu(); document.getElementById('contact-modal').classList.remove('hidden')" class="w-full bg-gradient-to-r from-hwblue-500 to-hwteal-500 text-white py-3 rounded-xl font-bold shadow-lg">
                     Book Strategy Session
@@ -237,11 +239,11 @@
                     </div>
 
                     <div class="glass-card p-6 rounded-2xl group">
-                        <div class="w-12 h-12 bg-hwteal-500/20 rounded-lg flex items-center justify-center mb-4 text-hwteal-400 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-heart-pulse text-xl"></i>
+                        <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center mb-4 text-red-400 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-car text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Medical & Dental</h3>
-                        <p class="text-slate-400 text-sm">Clinics | Ortho | Specialists. HIPAA-compliant routing, patient intake, and prescription refill request handling.</p>
+                        <h3 class="text-xl font-bold text-white mb-2">Automotive</h3>
+                        <p class="text-slate-400 text-sm">Repair Shops | Dealerships. Automate service appointment bookings, recall status checks, and parts inventory lookups.</p>
                     </div>
 
                     <div class="glass-card p-6 rounded-2xl group">
@@ -529,7 +531,7 @@
             </div>
         </section>
 
-        <section class="py-16 bg-slate-900/50 relative">
+        <section id="faq" class="py-16 bg-slate-900/50 relative">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-10">
                     <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Frequently Asked Questions</h2>
@@ -593,18 +595,6 @@
                         <div class="faq-answer px-6 pb-0 text-slate-300 text-sm leading-relaxed">
                             <div class="pb-6">
                                 We build in specific guardrails to protect your wallet. If the agent detects a caller is going in circles, being abusive, or not engaging in a business-related query, it will terminate the conversation, take a message, or transfer to a human after a set number of turns. You only pay for productive interactions.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-item glass-card rounded-2xl overflow-hidden cursor-pointer" onclick="toggleFaq(this)">
-                        <div class="p-6 flex justify-between items-center">
-                            <h3 class="text-lg font-semibold text-white">Is this compliant for medical practices (HIPAA)?</h3>
-                            <i class="fa-solid fa-chevron-down text-hwblue-500 transition-transform duration-300 faq-icon"></i>
-                        </div>
-                        <div class="faq-answer px-6 pb-0 text-slate-300 text-sm leading-relaxed">
-                            <div class="pb-6">
-                                Yes. We offer fully HIPAA-compliant configurations for our Medical and Dental clients on the <strong>Pro</strong> and <strong>Enterprise</strong> tiers. We sign a Business Associate Agreement (BAA) and ensure all voice data is encrypted and handled according to strict privacy standards.
                             </div>
                         </div>
                     </div>
